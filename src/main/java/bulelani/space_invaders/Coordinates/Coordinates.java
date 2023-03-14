@@ -1,4 +1,4 @@
-package bulelani.space_invaders;
+package bulelani.space_invaders.Coordinates;
 
 public class Coordinates {
     private float xPos;
