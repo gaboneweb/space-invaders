@@ -19,15 +19,15 @@ public class GamePanel extends JPanel implements Runnable{
 
     private final int FPS = 100;
 
-    private Player player = new Player(new Coordinates(920,1032),1   );
+    private Player player = new Player(new Coordinates(672,720),1   );
 
     public int entitySize = originalEntitySize * scale;
 
-    private final int maxScreenCol = 40;//27
-    private final int maxScreenRow = 23;//19
-    private final int  screenWidth = entitySize * maxScreenCol;// 1920
+    private final int maxScreenCol = 28;//28
+    private final int maxScreenRow = 16;//16
+    private final int  screenWidth = entitySize * maxScreenCol;// 1344
 
-   private final int  screenHeight = (entitySize * maxScreenRow) - 24;//1080
+   private final int  screenHeight = (entitySize * maxScreenRow);//768
 
    public GamePanel(){
      this.setPreferredSize(new Dimension(screenWidth,screenHeight));

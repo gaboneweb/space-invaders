@@ -15,9 +15,15 @@ public class Player extends Entity {
         switch(dir){
             case RIGHT:
                 this.position.setXpos(this.position.getXpos() + this.speed);
+                if (this.isOutOfBounds()){
+                    this.position.setXpos((float)1294);
+                }
                 break;
             case LEFT:
                 this.position.setXpos(this.position.getXpos() - this.speed);
+                if (this.isOutOfBounds()){
+                    this.position.setXpos((float)0);
+                }
                 break;
 
         }
@@ -26,6 +32,7 @@ public class Player extends Entity {
     public void updatePlayer(KeyHandler key){
         if(key.leftPressed){
             this.move(Direction.LEFT);
+
         }
         else if(key.rightPressed ) {
             this.move(Direction.RIGHT);
@@ -34,6 +41,15 @@ public class Player extends Entity {
             this.move(Direction.DOWN);
         }else if(key.upPressed){
             this.move(Direction.UP);
+        }
+    }
+
+    private boolean isOutOfBounds(){
+        if (this.position.getXpos() < 0 || this.position.getXpos() > 1294){
+            return true;
+        }
+        else{
+            return false;
         }
     }
 }
