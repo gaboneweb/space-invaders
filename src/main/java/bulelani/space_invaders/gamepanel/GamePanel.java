@@ -2,6 +2,7 @@ package bulelani.space_invaders.gamepanel;
 
 import bulelani.space_invaders.Coordinates.Coordinates;
 import bulelani.space_invaders.Entity.Entity;
+import bulelani.space_invaders.aliens.AlienArmy;
 import bulelani.space_invaders.display.Display;
 import bulelani.space_invaders.keyandler.KeyHandler;
 import bulelani.space_invaders.player.Player;
@@ -21,6 +22,8 @@ public class GamePanel extends JPanel implements Runnable{
     private final int FPS = 100;
 
     private Player player = new Player(new Coordinates(672,720),1   );
+
+    private AlienArmy aliens = new AlienArmy();
 
     private Display display = new Display();
 
@@ -73,7 +76,9 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
     public void update(){
-        player.updatePlayer(key);
+
+       player.updatePlayer(key);
+        aliens.updateAliens();
     }
 
     public void paintComponent(Graphics g){
@@ -81,6 +86,7 @@ public class GamePanel extends JPanel implements Runnable{
        super.paintComponent(g);
        Graphics2D g2 = (Graphics2D) g;
        display.drawPlayer(g2,player,entitySize);
+       display.drawAliens(g2,aliens,entitySize);
        g2.dispose();
    }
 }
