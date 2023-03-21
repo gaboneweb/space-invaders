@@ -78,7 +78,8 @@ public class GamePanel extends JPanel implements Runnable{
     public void update(){
 
        player.updatePlayer(key);
-        aliens.updateAliens();
+       player.updatePlayerMissiles();
+       aliens.updateAliens();
     }
 
     public void paintComponent(Graphics g){
@@ -87,6 +88,7 @@ public class GamePanel extends JPanel implements Runnable{
        Graphics2D g2 = (Graphics2D) g;
        display.drawPlayer(g2,player,entitySize);
        display.drawAliens(g2,aliens,entitySize);
+       display.drawMissiles(g2,player.getBullets(),entitySize);
        g2.dispose();
    }
 }

@@ -4,8 +4,13 @@ import bulelani.space_invaders.Coordinates.Coordinates;
 import bulelani.space_invaders.Entity.Entity;
 import bulelani.space_invaders.direction.Direction;
 import bulelani.space_invaders.keyandler.KeyHandler;
+import bulelani.space_invaders.projectiles.Missile;
+
+import java.util.ArrayList;
 
 public class Player extends Entity {
+
+    private ArrayList<Missile> bullets = new ArrayList<>();
     public Player(Coordinates position, int numberOfLives) {
         super(position, numberOfLives);
     }
@@ -32,15 +37,19 @@ public class Player extends Entity {
     public void updatePlayer(KeyHandler key){
         if(key.leftPressed){
             this.move(Direction.LEFT);
-
         }
         else if(key.rightPressed ) {
             this.move(Direction.RIGHT);
+        }else if(key.upPressed || key.spacePressed){
+            this.shoot();
         }
-        else if(key.downPressed){
-            this.move(Direction.DOWN);
-        }else if(key.upPressed){
-            this.move(Direction.UP);
+    }
+
+    public void updatePlayerMissiles(){
+        for(Missile bullet: bullets){
+            if(bullet.isAlive()){
+                bullet.move(Direction.UP);
+            }
         }
     }
 
@@ -51,5 +60,13 @@ public class Player extends Entity {
         else{
             return false;
         }
+    }
+
+    private void shoot(){
+        bullets.add(new Missile(new Coordinates(this.getXpos() + (float)15,this.getYpos()-(float)16 ),1));
+    }
+
+    public ArrayList<Missile> getBullets(){
+        return this.bullets;
     }
 }
