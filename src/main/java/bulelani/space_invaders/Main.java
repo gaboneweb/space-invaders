@@ -10,5 +10,6 @@ public class Main {
         GamePanel screen = new GamePanel();
 
         window.addGamePanel(screen);
+
     }
 }

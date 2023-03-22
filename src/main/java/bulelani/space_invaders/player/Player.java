@@ -11,6 +11,10 @@ import java.util.ArrayList;
 public class Player extends Entity {
 
     private ArrayList<Missile> bullets = new ArrayList<>();
+
+    private long lastShotTime = 0;
+
+    private static final long SHOT_DELAY_MS = 700;
     public Player(Coordinates position, int numberOfLives) {
         super(position, numberOfLives);
     }
@@ -63,7 +67,11 @@ public class Player extends Entity {
     }
 
     private void shoot(){
-        bullets.add(new Missile(new Coordinates(this.getXpos() + (float)15,this.getYpos()-(float)16 ),1));
+        long now = System.currentTimeMillis();
+        if (now - lastShotTime >= SHOT_DELAY_MS) {
+            bullets.add(new Missile(new Coordinates(this.getXpos() + (float) 15, this.getYpos() - (float) 16), 1));
+            lastShotTime = now;
+        }
     }
 
     public ArrayList<Missile> getBullets(){
