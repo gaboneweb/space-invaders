@@ -5,8 +5,8 @@ import bulelani.space_invaders.Entity.Entity;
 import bulelani.space_invaders.direction.Direction;
 
 public class Alien extends Entity {
-    public Alien(Coordinates position, int numberOfLives) {
-        super(position, numberOfLives);
+    public Alien(Coordinates position, int numberOfLives, int entitySize) {
+        super(position, numberOfLives,entitySize);
         this.setSpeed((float)1.5);
     }
 

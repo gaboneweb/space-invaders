@@ -11,12 +11,15 @@ public class Entity {
 
      protected  int numberOfLives;
 
+     protected int entitySize;
+
 
      protected  boolean alive = true;
 
-     public Entity(Coordinates position, int numberOfLives){
+     public Entity(Coordinates position, int numberOfLives,int entitySize){
           this.numberOfLives = numberOfLives;
           this.position = position;
+          this.entitySize = entitySize;
      }
      public void move(Direction dir){
 
@@ -75,6 +78,12 @@ public class Entity {
           return this.position.getYpos();
      }
 
+     public int getEntitySize(){
+          return  this.entitySize;
+     }
 
+     public boolean collide(Entity obj){
+          return false;
+     }
 
 }

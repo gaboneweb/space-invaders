@@ -10,19 +10,19 @@ public class AlienArmy {
     ArrayList<Alien> aliens = new ArrayList<>();
     Direction currentDirection = Direction.RIGHT;
 
-    public AlienArmy(){
-        createAliens();
+    public AlienArmy(int entitySize){
+        createAliens(entitySize);
 
     }
 
-    private void createAliens(){
+    private void createAliens(int entitySize){
 
         int startY = 0;
 
         for (int i = 0; i < 3; i++){
             int startX = 196;
             for(int j = 0; j < this.numberOfAlienForRow; j++ ){
-                this.aliens.add(new Alien(new Coordinates((float)startX,(float)startY), 1));
+                this.aliens.add(new Alien(new Coordinates((float)startX,(float)startY), 1,entitySize));
                 startX += 96;
             }
             startY += 96;

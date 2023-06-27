@@ -21,13 +21,13 @@ public class GamePanel extends JPanel implements Runnable{
 
     private final int FPS = 100;
 
-    private Player player = new Player(new Coordinates(672,720),1   );
-
-    private AlienArmy aliens = new AlienArmy();
-
     private Display display = new Display();
 
     public int entitySize = originalEntitySize * scale;
+
+    private Player player = new Player(new Coordinates(672,720),1,entitySize  );
+
+    private AlienArmy aliens = new AlienArmy(entitySize);
 
     private final int maxScreenCol = 28;//28
     private final int maxScreenRow = 16;//16
@@ -86,9 +86,9 @@ public class GamePanel extends JPanel implements Runnable{
 
        super.paintComponent(g);
        Graphics2D g2 = (Graphics2D) g;
-       display.drawPlayer(g2,player,entitySize);
-       display.drawAliens(g2,aliens,entitySize);
-       display.drawMissiles(g2,player.getBullets(),entitySize);
+       display.drawPlayer(g2,player);
+       display.drawAliens(g2,aliens);
+       display.drawMissiles(g2,player.getBullets());
        g2.dispose();
    }
 }

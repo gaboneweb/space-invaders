@@ -6,8 +6,8 @@ import bulelani.space_invaders.direction.Direction;
 
 public class Missile extends Entity {
 
-    public Missile(Coordinates position, int numberOfLives) {
-        super(position, numberOfLives);
+    public Missile(Coordinates position, int numberOfLives,int entitySize) {
+        super(position, numberOfLives,entitySize);
     }
 
     @Override
