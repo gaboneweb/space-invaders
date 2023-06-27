@@ -13,6 +13,12 @@ public class Entity {
 
      protected int entitySize;
 
+     protected Coordinates topRightPos;
+
+     Coordinates topLeftPos;
+
+     Coordinates bottomRightPos;
+
 
      protected  boolean alive = true;
 
@@ -20,6 +26,9 @@ public class Entity {
           this.numberOfLives = numberOfLives;
           this.position = position;
           this.entitySize = entitySize;
+          this.topRightPos = new Coordinates(position.getXpos() + this.entitySize - 1,position.getYpos() + this.entitySize - 1);
+          this.topLeftPos = new Coordinates(position.getXpos(),position.getYpos() + this.entitySize - 1);
+          this.bottomRightPos = new Coordinates(position.getXpos() + this.entitySize - 1,position.getYpos());
      }
      public void move(Direction dir){
 
@@ -82,8 +91,22 @@ public class Entity {
           return  this.entitySize;
      }
 
+     private boolean isIn(Coordinates coordinates){
+          boolean isWithInX = coordinates.getXpos() >= this.position.getXpos() &&
+                              coordinates.getXpos() <= this.topRightPos.getXpos();
+
+          boolean isWithInY = coordinates.getYpos() >= this.position.getYpos() &&
+                  coordinates.getYpos() <= this.topRightPos.getYpos();
+
+          return isWithInX && isWithInY;
+     }
+
      public boolean collide(Entity obj){
-          return false;
+
+          return obj.isIn(this.bottomRightPos) ||
+               obj.isIn(this.position) ||
+               obj.isIn(this.topLeftPos) ||
+               obj.isIn(topRightPos);
      }
 
 }
