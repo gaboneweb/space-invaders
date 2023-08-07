@@ -19,7 +19,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     public KeyHandler key = new KeyHandler();
 
-    private final int FPS = 100;
+    private final int FPS = 60;
 
     private Display display = new Display();
 
@@ -89,6 +89,7 @@ public class GamePanel extends JPanel implements Runnable{
        display.drawPlayer(g2,player);
        display.drawAliens(g2,aliens);
        display.drawMissiles(g2,player.getBullets());
+       display.drawAlienMissiles(g2,aliens);
        g2.dispose();
    }
 }

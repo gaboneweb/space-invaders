@@ -15,7 +15,7 @@ public class Entity {
 
      protected Coordinates topRightPos;
 
-     Coordinates topLeftPos;
+     Coordinates bottomLeftPos;
 
      Coordinates bottomRightPos;
 
@@ -26,9 +26,9 @@ public class Entity {
           this.numberOfLives = numberOfLives;
           this.position = position;
           this.entitySize = entitySize;
-          this.topRightPos = new Coordinates(position.getXpos() + this.entitySize - 1,position.getYpos() + this.entitySize - 1);
-          this.topLeftPos = new Coordinates(position.getXpos(),position.getYpos() + this.entitySize - 1);
-          this.bottomRightPos = new Coordinates(position.getXpos() + this.entitySize - 1,position.getYpos());
+          this.topRightPos = new Coordinates(position.getXpos() + this.entitySize - 1,position.getYpos());
+          this.bottomLeftPos = new Coordinates(position.getXpos(),position.getYpos() + this.entitySize - 1);
+          this.bottomRightPos = new Coordinates(position.getXpos() + this.entitySize - 1,position.getYpos()+ this.entitySize - 1);
      }
      public void move(Direction dir){
 
@@ -96,7 +96,7 @@ public class Entity {
                               coordinates.getXpos() <= this.topRightPos.getXpos();
 
           boolean isWithInY = coordinates.getYpos() >= this.position.getYpos() &&
-                  coordinates.getYpos() <= this.topRightPos.getYpos();
+                  coordinates.getYpos() <= this.bottomRightPos.getYpos();
 
           return isWithInX && isWithInY;
      }
@@ -105,7 +105,7 @@ public class Entity {
 
           return obj.isIn(this.bottomRightPos) ||
                obj.isIn(this.position) ||
-               obj.isIn(this.topLeftPos) ||
+               obj.isIn(this.bottomLeftPos) ||
                obj.isIn(topRightPos);
      }
 

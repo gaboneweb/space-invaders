@@ -3,6 +3,7 @@ package bulelani.space_invaders.aliens;
 import bulelani.space_invaders.Coordinates.Coordinates;
 import bulelani.space_invaders.Entity.Entity;
 import bulelani.space_invaders.direction.Direction;
+import bulelani.space_invaders.projectiles.Missile;
 
 public class Alien extends Entity {
     public Alien(Coordinates position, int numberOfLives, int entitySize) {
@@ -37,5 +38,9 @@ public class Alien extends Entity {
 
         }
 
+    }
+
+    public Missile shoot(){
+        return new Missile(new Coordinates(this.getXpos() + (float) 15, this.getYpos()+ (float) entitySize), 1,this.getEntitySize()/3);
     }
 }

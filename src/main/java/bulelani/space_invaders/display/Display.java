@@ -28,9 +28,18 @@ public class Display {
         }
     }
 
+    public void drawAlienMissiles(Graphics2D graphics, AlienArmy aliens){
+        graphics.setColor(Color.red);
+
+        for (Missile bullet : aliens.getBullets()) {
+            Coordinates pos = bullet.getPosition();
+            graphics.fillRect((int) bullet.getXpos(), (int) bullet.getYpos(), bullet.getEntitySize(), bullet.getEntitySize());
+        }
+    }
+
 
     public void drawMissiles(Graphics2D graphics, ArrayList<Missile> bullets) {
-        graphics.setColor(Color.blue);
+        graphics.setColor(Color.green);
 
         for (Missile bullet : bullets) {
             Coordinates pos = bullet.getPosition();
