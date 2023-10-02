@@ -86,12 +86,15 @@ public class GamePanel extends JPanel implements Runnable{
 
        super.paintComponent(g);
        Graphics2D g2 = (Graphics2D) g;
+       display.drawBackground(g2, screenWidth, screenHeight);
        display.drawPlayer(g2,player);
        display.drawAliens(g2,aliens);
        display.drawMissiles(g2,player.getBullets());
        display.drawAlienMissiles(g2,aliens);
        g2.dispose();
    }
+
+   
 }
 
 //The sleep method for the game loop

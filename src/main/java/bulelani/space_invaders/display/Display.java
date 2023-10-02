@@ -10,11 +10,14 @@ import bulelani.space_invaders.projectiles.Missile;
 import java.awt.*;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+
 public class Display {
     public void drawPlayer(Graphics2D graphics, Player player){
         graphics.setColor(Color.green);
         Coordinates pos = player.getPosition();
-        graphics.fillRect((int)player.getXpos(),(int)player.getYpos(),player.getEntitySize(),player.getEntitySize());
+        ImageIcon image = new ImageIcon("./src/main/resources/images/player.png");
+        graphics.drawImage(image.getImage(),(int)player.getXpos(),(int)player.getYpos(),player.getEntitySize(),player.getEntitySize(),null);
     }
 
 
@@ -22,18 +25,18 @@ public class Display {
         graphics.setColor(Color.blue);
 
         for (Alien alien : aliens.getAliens()) {
-            Coordinates pos = alien.getPosition();
-//            graphics.fillRect((int) alien.getXpos(), (int) alien.getYpos(), entitySize, entitySize);
-            graphics.fillOval((int) alien.getXpos(), (int) alien.getYpos(), alien.getEntitySize(), alien.getEntitySize());
+            ImageIcon image = new ImageIcon("./src/main/resources/images/alien.png");
+            graphics.drawImage(image.getImage(), (int) alien.getXpos(), (int) alien.getYpos(),alien.getEntitySize(), alien.getEntitySize(), null);
+            //graphics.fillOval((int) alien.getXpos(), (int) alien.getYpos(), alien.getEntitySize(), alien.getEntitySize());
         }
     }
 
     public void drawAlienMissiles(Graphics2D graphics, AlienArmy aliens){
-        graphics.setColor(Color.red);
+        graphics.setColor(Color.yellow);
 
         for (Missile bullet : aliens.getBullets()) {
             Coordinates pos = bullet.getPosition();
-            graphics.fillRect((int) bullet.getXpos(), (int) bullet.getYpos(), bullet.getEntitySize(), bullet.getEntitySize());
+            graphics.fillOval((int) bullet.getXpos(), (int) bullet.getYpos(), bullet.getEntitySize(), bullet.getEntitySize());
         }
     }
 
@@ -43,8 +46,14 @@ public class Display {
 
         for (Missile bullet : bullets) {
             Coordinates pos = bullet.getPosition();
-            graphics.fillRect((int) bullet.getXpos(), (int) bullet.getYpos(), bullet.getEntitySize(), bullet.getEntitySize());
+            ImageIcon image = new ImageIcon("./src/main/resources/images/missile_1.png");
+            graphics.drawImage(image.getImage(),(int) bullet.getXpos(), (int) bullet.getYpos(), bullet.getEntitySize(), bullet.getEntitySize(),null);
         }
+    }
+
+    public void drawBackground(Graphics2D graphics,int width,int height){
+        ImageIcon image = new ImageIcon("./src/main/resources/images/background_2.jpg");
+        graphics.drawImage(image.getImage(), 0, 0,width,height, null);
     }
 
 
