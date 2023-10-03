@@ -17,7 +17,7 @@ public class AlienArmy {
 
     private long lastShotTime = 0;
 
-    private static final long SHOT_DELAY_MS = 2000;
+    private static final long SHOT_DELAY_MS = 750;
 
     public AlienArmy(int entitySize){
         createAliens(entitySize);
@@ -28,7 +28,7 @@ public class AlienArmy {
 
         int startY = 0;
 
-        for (int i = 0; i < 3; i++){
+        for (int i = 0; i < 4; i++){
             int startX = 196;
             for(int j = 0; j < this.numberOfAlienForRow; j++ ){
                 this.aliens.add(new Alien(new Coordinates((float)startX,(float)startY), 1,entitySize));

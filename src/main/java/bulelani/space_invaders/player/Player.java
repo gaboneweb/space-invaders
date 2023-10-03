@@ -45,7 +45,7 @@ public class Player extends Entity {
         }
         else if(key.rightPressed &&  this.isAlive()) {
             this.move(Direction.RIGHT);
-        }else if(key.upPressed || key.spacePressed && this.isAlive()){
+        }else if((key.upPressed || key.spacePressed) && this.isAlive()){
             this.shoot();
         }
     }
