@@ -7,6 +7,7 @@ import bulelani.space_invaders.keyandler.KeyHandler;
 import bulelani.space_invaders.projectiles.Missile;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Player extends Entity {
 
@@ -39,17 +40,18 @@ public class Player extends Entity {
     }
 
     public void updatePlayer(KeyHandler key){
-        if(key.leftPressed){
+        if(key.leftPressed && this.isAlive()){
             this.move(Direction.LEFT);
         }
-        else if(key.rightPressed ) {
+        else if(key.rightPressed &&  this.isAlive()) {
             this.move(Direction.RIGHT);
-        }else if(key.upPressed || key.spacePressed){
+        }else if(key.upPressed || key.spacePressed && this.isAlive()){
             this.shoot();
         }
     }
 
     public void updatePlayerMissiles(){
+        this.removeBullets();
         for(Missile bullet: bullets){
             if(bullet.isAlive()){
                 bullet.move(Direction.UP);
@@ -76,5 +78,9 @@ public class Player extends Entity {
 
     public ArrayList<Missile> getBullets(){
         return this.bullets;
+    }
+
+    private void removeBullets() {
+        this.bullets = (ArrayList<Missile>) bullets.stream().filter(missile -> missile.isAlive()).collect(Collectors.toList());
     }
 }

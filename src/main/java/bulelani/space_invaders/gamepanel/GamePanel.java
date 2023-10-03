@@ -3,6 +3,7 @@ package bulelani.space_invaders.gamepanel;
 import bulelani.space_invaders.Coordinates.Coordinates;
 import bulelani.space_invaders.Entity.Entity;
 import bulelani.space_invaders.aliens.AlienArmy;
+import bulelani.space_invaders.collision.CollisionHandler;
 import bulelani.space_invaders.display.Display;
 import bulelani.space_invaders.keyandler.KeyHandler;
 import bulelani.space_invaders.player.Player;
@@ -28,6 +29,8 @@ public class GamePanel extends JPanel implements Runnable{
     private Player player = new Player(new Coordinates(672,720),1,entitySize  );
 
     private AlienArmy aliens = new AlienArmy(entitySize);
+
+    private CollisionHandler collisionHandler = new CollisionHandler();
 
     private final int maxScreenCol = 28;//28
     private final int maxScreenRow = 16;//16
@@ -80,6 +83,7 @@ public class GamePanel extends JPanel implements Runnable{
        player.updatePlayer(key);
        player.updatePlayerMissiles();
        aliens.updateAliens();
+       collisionHandler.checkCollisions(player, aliens);
     }
 
     public void paintComponent(Graphics g){

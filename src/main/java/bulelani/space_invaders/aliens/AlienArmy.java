@@ -45,6 +45,7 @@ public class AlienArmy {
 
 
     public void updateAliens(){
+        this.removeAliens();
         Direction prevDir = currentDirection;
         if(isAtTheBound()){
             currentDirection = Direction.DOWN;
@@ -84,6 +85,10 @@ public class AlienArmy {
     }
     private void removeBullets() {
         this.bullets = (ArrayList<Missile>) bullets.stream().filter(missile -> missile.isAlive()).collect(Collectors.toList());
+    }
+
+    private void removeAliens() {
+        this.aliens = (ArrayList<Alien>) aliens.stream().filter(alien -> alien.isAlive()).collect(Collectors.toList());
     }
 
     public static <T> T getRandomElement(ArrayList<T> list) {

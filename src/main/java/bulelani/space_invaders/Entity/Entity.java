@@ -66,8 +66,11 @@ public class Entity {
      }
 
      public void loseLives(){
-          if (this.numberOfLives > 0){
+          if (this.numberOfLives > 1){
                this.numberOfLives--;
+               if(this.numberOfLives == 0){
+                    this.alive =false;
+               }
           }
           else{
                this.numberOfLives = 0;
@@ -91,22 +94,22 @@ public class Entity {
           return  this.entitySize;
      }
 
-     private boolean isIn(Coordinates coordinates){
-          boolean isWithInX = coordinates.getXpos() >= this.position.getXpos() &&
-                              coordinates.getXpos() <= this.topRightPos.getXpos();
-
-          boolean isWithInY = coordinates.getYpos() >= this.position.getYpos() &&
-                  coordinates.getYpos() <= this.bottomRightPos.getYpos();
-
-          return isWithInX && isWithInY;
-     }
-
      public boolean collide(Entity obj){
 
-          return obj.isIn(this.bottomRightPos) ||
-               obj.isIn(this.position) ||
-               obj.isIn(this.bottomLeftPos) ||
-               obj.isIn(topRightPos);
+          // Check if this entity's right edge is to the left of the other entity's left edge
+          boolean isLeftOf = this.position.getXpos() + this.entitySize < obj.position.getXpos();
+          
+          // Check if this entity's left edge is to the right of the other entity's right edge
+          boolean isRightOf = this.position.getXpos() > obj.position.getXpos() + obj.entitySize;
+
+          // Check if this entity's bottom edge is above the other entity's top edge
+          boolean isAbove = this.position.getYpos() + this.entitySize < obj.position.getYpos();
+
+          // Check if this entity's top edge is below the other entity's bottom edge
+          boolean isBelow = this.position.getYpos() > obj.position.getYpos() + obj.entitySize;
+
+          // If any of the conditions above are true, there is no collision
+          return !(isLeftOf || isRightOf || isAbove || isBelow);
      }
 
 }
