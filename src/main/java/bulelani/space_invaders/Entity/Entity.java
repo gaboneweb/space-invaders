@@ -3,7 +3,6 @@ package bulelani.space_invaders.Entity;
 
 import bulelani.space_invaders.Coordinates.Coordinates;
 import bulelani.space_invaders.direction.Direction;
-import bulelani.space_invaders.keyandler.KeyHandler;
 
 public class Entity {
      protected Coordinates position;

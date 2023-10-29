@@ -26,7 +26,7 @@ public class AlienArmy {
 
     private void createAliens(int entitySize){
 
-        int startY = 0;
+        int startY = 48;
 
         for (int i = 0; i < 4; i++){
             int startX = 196;
@@ -111,5 +111,9 @@ public class AlienArmy {
 
     public ArrayList<Missile> getBullets(){
         return this.bullets;
+    }
+
+    public boolean isAllDead(){
+        return aliens.isEmpty();
     }
 }

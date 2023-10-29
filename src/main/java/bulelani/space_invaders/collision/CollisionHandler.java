@@ -4,10 +4,9 @@ import bulelani.space_invaders.aliens.Alien;
 import bulelani.space_invaders.aliens.AlienArmy;
 import bulelani.space_invaders.player.Player;
 import bulelani.space_invaders.projectiles.Missile;
-import java.util.*;
 
 public class CollisionHandler {
-
+    private int pointsEarned = 0;
 
     private void checkBulletAlienCollisions(Player player, AlienArmy aliens) {
         // Implement the collision detection logic between bullets and aliens
@@ -17,6 +16,7 @@ public class CollisionHandler {
                 if(alien.isAlive() && bullet.isAlive() && alien.collide(bullet)){
                     alien.loseLives();
                     bullet.loseLives();
+                    pointsEarned+= 30;
                 }
             }
         }
@@ -40,4 +40,11 @@ public class CollisionHandler {
         checkBulletPlayerCollisions(player, aliens);
         checkBulletAlienCollisions(player, aliens);
     }
+
+    public int getPointEarned(){
+        int temp = pointsEarned;
+        pointsEarned = 0;
+        return temp;
+    }
+
 }

@@ -1,7 +1,6 @@
 package bulelani.space_invaders.gamepanel;
 
 import bulelani.space_invaders.Coordinates.Coordinates;
-import bulelani.space_invaders.Entity.Entity;
 import bulelani.space_invaders.aliens.AlienArmy;
 import bulelani.space_invaders.collision.CollisionHandler;
 import bulelani.space_invaders.display.Display;
@@ -12,6 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{
+
+    private int score = 0;
    //Screen settings
     public int originalEntitySize = 16;
     public final int scale = 3;
@@ -26,7 +27,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     public int entitySize = originalEntitySize * scale;
 
-    private Player player = new Player(new Coordinates(672,720),1,entitySize  );
+    private Player player = new Player(new Coordinates(672,720),3,entitySize  );
 
     private AlienArmy aliens = new AlienArmy(entitySize);
 
@@ -36,7 +37,7 @@ public class GamePanel extends JPanel implements Runnable{
     private final int maxScreenRow = 16;//16
     private final int  screenWidth = entitySize * maxScreenCol;// 1344
 
-   private final int  screenHeight = (entitySize * maxScreenRow);//768
+    private final int  screenHeight = (entitySize * maxScreenRow);//768
 
    public GamePanel(){
      this.setPreferredSize(new Dimension(screenWidth,screenHeight));
@@ -79,11 +80,13 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
     public void update(){
-
-       player.updatePlayer(key);
-       player.updatePlayerMissiles();
-       aliens.updateAliens();
-       collisionHandler.checkCollisions(player, aliens);
+        if(player.isAlive() &&  !aliens.isAllDead()){
+            player.updatePlayer(key);
+            player.updatePlayerMissiles();
+            aliens.updateAliens();
+            collisionHandler.checkCollisions(player, aliens);
+            score += collisionHandler.getPointEarned();
+        }
     }
 
     public void paintComponent(Graphics g){
@@ -95,6 +98,11 @@ public class GamePanel extends JPanel implements Runnable{
        display.drawAliens(g2,aliens);
        display.drawMissiles(g2,player.getBullets());
        display.drawAlienMissiles(g2,aliens);
+       display.drawPlayerLives(g2, player.getNumberOfLives());
+       display.drawScore(g2, score, screenWidth);
+       if(!player.isAlive() ||  aliens.isAllDead()){
+            display.gameOver(g2, screenWidth, screenHeight);
+       }
        g2.dispose();
    }
 

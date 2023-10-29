@@ -2,6 +2,9 @@ package bulelani.space_invaders.window;
 
 import bulelani.space_invaders.gamepanel.GamePanel;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import javax.swing.*;
 
 public class Window {
@@ -18,6 +21,7 @@ public class Window {
         this.window.setTitle("Space Invaders");
         this.window.setLocationRelativeTo(null);
         this.window.setVisible(true);
+        this.window.setLocation(20, 0);
     }
 
     public void addGamePanel(GamePanel panel){
