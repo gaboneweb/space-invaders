@@ -15,7 +15,6 @@ My own version of the single player space-invaders game.
 Java 11 and above.
 Screen size greate than 1400x800 pixels.Game window is not resizable.
 
-# To run the Robot Worlds Server
   ```sh
   cd ~/space-invaders              // if did not followng Getting started section
 
@@ -25,6 +24,8 @@ Screen size greate than 1400x800 pixels.Game window is not resizable.
   java -jar /libs/space-invaders-1.0.jar
   
   ```
+#Screenshot
+![Screenshot of the how the game looks like](./docs/space_screenshot.png)
 
 # Controls
 1. <u>__Move left__</u>
