@@ -28,4 +28,9 @@ public class Coordinates {
     public float getYpos(){
         return this.yPos;
     }
+
+    @Override
+    public String toString(){
+        return "[" + this.xPos + ", " + this.yPos + "]";
+    }
 }

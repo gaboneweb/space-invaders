@@ -2,8 +2,6 @@ package bulelani.space_invaders.window;
 
 import bulelani.space_invaders.gamepanel.GamePanel;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 
 import javax.swing.*;
 

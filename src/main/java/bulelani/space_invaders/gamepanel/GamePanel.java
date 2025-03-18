@@ -4,7 +4,7 @@ import bulelani.space_invaders.Coordinates.Coordinates;
 import bulelani.space_invaders.aliens.AlienArmy;
 import bulelani.space_invaders.collision.CollisionHandler;
 import bulelani.space_invaders.display.Display;
-import bulelani.space_invaders.keyandler.KeyHandler;
+import bulelani.space_invaders.keyandler.KeyMapper;
 import bulelani.space_invaders.player.Player;
 
 import javax.swing.*;
@@ -19,7 +19,9 @@ public class GamePanel extends JPanel implements Runnable{
 
     private Thread gameThread;
 
-    public KeyHandler key = new KeyHandler();
+
+    public KeyMapper keyMap;
+
 
     private final int FPS = 100;
 
@@ -43,8 +45,9 @@ public class GamePanel extends JPanel implements Runnable{
      this.setPreferredSize(new Dimension(screenWidth,screenHeight));
      this.setBackground(Color.BLACK);
      this.setDoubleBuffered(true);
-     this.addKeyListener(key);
      this.setFocusable(true);
+     this.requestFocusInWindow();
+     this.keyMap = new KeyMapper(player,this);
      startGameThread();
    }
     public void startGameThread(){
@@ -81,7 +84,6 @@ public class GamePanel extends JPanel implements Runnable{
     }
     public void update(){
         if(player.isAlive() &&  !aliens.isAllDead()){
-            player.updatePlayer(key);
             player.updatePlayerMissiles();
             aliens.updateAliens();
             collisionHandler.checkCollisions(player, aliens);

@@ -18,6 +18,7 @@ public class Player extends Entity {
     private static final long SHOT_DELAY_MS = 700;
     public Player(Coordinates position, int numberOfLives,int entitySize) {
         super(position, numberOfLives,entitySize);
+        this.setSpeed(50);
     }
 
     @Override
@@ -39,6 +40,12 @@ public class Player extends Entity {
         }
     }
 
+
+    /**
+     * Uses a KeyLister object to listen for key pressed events
+     * Method now not being used, use the updatePlayer(Direction dir) function
+     * @param key KeyHanlder object to hold the key that was pressed
+     */
     public void updatePlayer(KeyHandler key){
         if(key.leftPressed && this.isAlive()){
             this.move(Direction.LEFT);
@@ -47,6 +54,25 @@ public class Player extends Entity {
             this.move(Direction.RIGHT);
         }else if((key.upPressed || key.spacePressed) && this.isAlive()){
             this.shoot();
+        }
+    }
+
+    public void updatePlayer(Direction dir){
+        if(this.isAlive()){
+            switch (dir) {
+                case LEFT:
+                    this.move(dir);
+                    break;
+                case RIGHT:
+                    this.move(dir);
+                    break;
+                case UP:
+                    //For player, take up direction as shooting
+                    this.shoot();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
